@@ -1,0 +1,72 @@
+// ======================================================
+// DATASALUD PERÚ
+// CRUD DE ATENCIONES SIS - MONGODB
+// ======================================================
+
+// Seleccionar base de datos
+use("DataSaludPeru");
+
+// ======================================================
+// 1. CREATE - INSERTAR
+// ======================================================
+
+db.atenciones_sis.insertOne({
+    anio: 2026,
+    mes: "ENERO",
+    region: "LA LIBERTAD",
+    provincia: "TRUJILLO",
+    ubigeoDistrito: "130101",
+    distrito: "TRUJILLO",
+    codIPRESS: "IPRESS001",
+    IPRESS: "Establecimiento de Ejemplo",
+    nivelEESS: "I-3",
+    planSeguro: "SIS GRATUITO",
+    codServicio: "SERV001",
+    descServicio: "Consulta de ejemplo",
+    sexo: "M",
+    grupoEdad: "18-29",
+    atenciones: 25
+});
+
+// ======================================================
+// 2. READ - CONSULTAR
+// ======================================================
+
+// Consultar todos los registros
+db.atenciones_sis.find();
+
+// Consultar por código de IPRESS
+db.atenciones_sis.find({
+    codIPRESS: "IPRESS001"
+});
+
+// ======================================================
+// 3. UPDATE - ACTUALIZAR
+// ======================================================
+
+db.atenciones_sis.updateOne(
+    { codIPRESS: "IPRESS001" },
+    {
+        $set: {
+            atenciones: 30
+        }
+    }
+);
+
+// Verificar actualización
+db.atenciones_sis.find({
+    codIPRESS: "IPRESS001"
+});
+
+// ======================================================
+// 4. DELETE - ELIMINAR
+// ======================================================
+
+db.atenciones_sis.deleteOne({
+    codIPRESS: "IPRESS001"
+});
+
+// Verificar eliminación
+db.atenciones_sis.find({
+    codIPRESS: "IPRESS001"
+});
